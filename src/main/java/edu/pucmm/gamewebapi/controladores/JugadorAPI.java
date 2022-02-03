@@ -50,19 +50,13 @@ public class JugadorAPI {
     public ResponseEntity<?> getAll(@RequestBody Jugador jugador) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
 
-        Jugador aux;
+        jugador.setId(0);
+        jugador.setFechaRegistro(new Date());
 
-        try {
-            aux = jugadorServices.findByID(jugador.getId());
-        }catch (NullPointerException e){
-            return new ResponseEntity<>("ERROR: El jugador de ID [" + jugador.getId() + "] no existe",
-                    null, 400);
+        if(jugador.getNombreJugador().isEmpty()){
+            return new ResponseEntity<>("ERROR: No se ha enviado el nombre del jugador", null, 400);
         }
 
-        aux.setNombreJugador(jugador.getNombreJugador());
-        aux.setScore(jugador.getScore());
-
-
-        return new ResponseEntity<>(jugadorServices.insert(aux), null, 200);
+        return new ResponseEntity<>(jugadorServices.insert(jugador), null, 200);
     }
 }
