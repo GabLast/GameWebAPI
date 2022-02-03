@@ -7,11 +7,10 @@ volumes: #Bloque para definir los volumenes
   database-data:
 
 services:
-
   rest-api:
     build: .
     ports: #puertos que estaran expuestos.
-      - "8080":"8080"
+      - "8080:8080"
     networks: #red para conectar los equipos.
       - red-app
     volumes:
