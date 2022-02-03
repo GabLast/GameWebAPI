@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
+
 @CrossOrigin(maxAge = 1800, origins = "*")
 @RestController
 @RequestMapping("/jugador")
@@ -20,25 +22,28 @@ public class JugadorAPI {
     public ResponseEntity<?> getAll() throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
 
-        return new ResponseEntity<>(objectMapper.writeValueAsString(jugadorServices.findAll()), null, 200);
+        return new ResponseEntity<>(jugadorServices.findAll(), null, 200);
     }
 
     @GetMapping("/find")
     public ResponseEntity<?> getByID(@RequestParam(name = "id", required = false) long id) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
 
-        return new ResponseEntity<>(objectMapper.writeValueAsString(jugadorServices.findByID(id)), null, 200);
+        return new ResponseEntity<>(jugadorServices.findByID(id), null, 200);
     }
 
     @PostMapping("")
     public ResponseEntity<?> postScore(@RequestBody Jugador jugador) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
 
+        jugador.setId(0);
+        jugador.setFechaRegistro(new Date());
+
         if(jugador.getNombreJugador().isEmpty()){
-            return new ResponseEntity<>(objectMapper.writeValueAsString("ERROR: No se ha enviado el nombre del jugador"), null, 400);
+            return new ResponseEntity<>("ERROR: No se ha enviado el nombre del jugador", null, 400);
         }
 
-        return new ResponseEntity<>(objectMapper.writeValueAsString(jugadorServices.insert(jugador)), null, 200);
+        return new ResponseEntity<>(jugadorServices.insert(jugador), null, 200);
     }
 
     @PutMapping("")
@@ -50,7 +55,7 @@ public class JugadorAPI {
         try {
             aux = jugadorServices.findByID(jugador.getId());
         }catch (NullPointerException e){
-            return new ResponseEntity<>(objectMapper.writeValueAsString("ERROR: El jugador de ID [" + jugador.getId() + "] no existe"),
+            return new ResponseEntity<>("ERROR: El jugador de ID [" + jugador.getId() + "] no existe",
                     null, 400);
         }
 
@@ -58,6 +63,6 @@ public class JugadorAPI {
         aux.setScore(jugador.getScore());
 
 
-        return new ResponseEntity<>(objectMapper.writeValueAsString(jugadorServices.insert(aux)), null, 200);
+        return new ResponseEntity<>(jugadorServices.insert(aux), null, 200);
     }
 }
