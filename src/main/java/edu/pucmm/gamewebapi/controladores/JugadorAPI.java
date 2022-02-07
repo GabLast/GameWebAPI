@@ -32,8 +32,22 @@ public class JugadorAPI {
         return new ResponseEntity<>(jugadorServices.findByID(id), null, 200);
     }
 
-    @PostMapping("")
-    public ResponseEntity<?> postScore(@RequestBody Jugador jugador) throws JsonProcessingException {
+//    @PostMapping("")
+//    public ResponseEntity<?> postScore(@RequestBody Jugador jugador) throws JsonProcessingException {
+//        ObjectMapper objectMapper = new ObjectMapper();
+//
+//        jugador.setId(0);
+//        jugador.setFechaRegistro(new Date());
+//
+//        if(jugador.getNombreJugador().isEmpty()){
+//            return new ResponseEntity<>("ERROR: No se ha enviado el nombre del jugador", null, 400);
+//        }
+//
+//        return new ResponseEntity<>(jugadorServices.insert(jugador), null, 200);
+//    }
+
+    @PutMapping("")
+    public ResponseEntity<?> put(@RequestBody Jugador jugador) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
 
         jugador.setId(0);
@@ -46,17 +60,20 @@ public class JugadorAPI {
         return new ResponseEntity<>(jugadorServices.insert(jugador), null, 200);
     }
 
-    @PutMapping("")
-    public ResponseEntity<?> getAll(@RequestBody Jugador jugador) throws JsonProcessingException {
+    @PutMapping("/update")
+    public ResponseEntity<?> update(@RequestBody Jugador jugador) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
+        Jugador player;
 
-        jugador.setId(0);
-        jugador.setFechaRegistro(new Date());
-
-        if(jugador.getNombreJugador().isEmpty()){
-            return new ResponseEntity<>("ERROR: No se ha enviado el nombre del jugador", null, 400);
+        try {
+            player = jugadorServices.findByID(jugador.getId());
+        }catch (NullPointerException e){
+            return new ResponseEntity<>("ERROR: Jugador no existe", null, 400);
         }
 
-        return new ResponseEntity<>(jugadorServices.insert(jugador), null, 200);
+        player.setScore(jugador.getScore());
+        player.setNombreJugador(jugador.getNombreJugador());
+
+        return new ResponseEntity<>(jugadorServices.insert(player), null, 200);
     }
 }
