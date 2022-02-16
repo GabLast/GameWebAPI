@@ -89,4 +89,10 @@ public class JugadorAPI {
 
         return new ResponseEntity<>(jugadorServices.delete(player), null, 200);
     }
+
+    @DeleteMapping("/PELIGROSO")
+    public ResponseEntity<?> alldelete() throws JsonProcessingException {
+        jugadorServices.clearAll();
+        return new ResponseEntity<>("Everything has been deleted", null, 200);
+    }
 }

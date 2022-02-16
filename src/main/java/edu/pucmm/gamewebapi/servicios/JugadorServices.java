@@ -33,4 +33,11 @@ public class JugadorServices {
         jugadorRepository.delete(jugador);
         return jugador;
     }
+
+    public void clearAll() {
+
+        for(Jugador a : jugadorRepository.findAll()){
+            jugadorRepository.delete(a);
+        }
+    }
 }
