@@ -28,4 +28,9 @@ public class JugadorServices {
     public Jugador findByID(long id){
         return jugadorRepository.findById(id);
     }
+
+    public Jugador delete(Jugador jugador) {
+        jugadorRepository.delete(jugador);
+        return jugador;
+    }
 }

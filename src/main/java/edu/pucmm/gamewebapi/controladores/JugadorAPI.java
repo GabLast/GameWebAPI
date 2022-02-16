@@ -76,4 +76,17 @@ public class JugadorAPI {
 
         return new ResponseEntity<>(jugadorServices.insert(player), null, 200);
     }
+
+    @PutMapping("/delete")
+    public ResponseEntity<?> delete(@RequestParam(name = "id") long id) throws JsonProcessingException {
+        Jugador player;
+
+        try {
+            player = jugadorServices.findByID(id);
+        }catch (NullPointerException e){
+            return new ResponseEntity<>("ERROR: Jugador no existe", null, 400);
+        }
+
+        return new ResponseEntity<>(jugadorServices.delete(player), null, 200);
+    }
 }
