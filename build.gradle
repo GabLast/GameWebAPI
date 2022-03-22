@@ -18,6 +18,14 @@ repositories {
     mavenCentral()
 }
 
+jar {
+    manifest {
+        attributes (
+                'Main-Class': 'edu.pucmm.gamewebapi.GameWebApiApplication'
+        )
+    }
+}
+
 dependencies {
 
     implementation 'org.springframework.boot:spring-boot-starter'
