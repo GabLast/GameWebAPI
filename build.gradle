@@ -20,9 +20,7 @@ repositories {
 
 jar {
     manifest {
-        attributes (
-                'Main-Class': 'edu.pucmm.gamewebapi.GameWebApiApplication'
-        )
+        attributes 'Main-Class': 'edu.pucmm.gamewebapi.GameWebApiApplication'
     }
 }
 
