@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
+import java.util.Random;
 
 @Service
 public class JugadorServices {
@@ -16,7 +17,7 @@ public class JugadorServices {
 
     @PostConstruct
     public void init(){
-        jugadorRepository.save(new Jugador("Jugador de prueba", 999));
+        jugadorRepository.save(new Jugador("Jugador de prueba " + new Random().nextInt(999), 999));
     }
 
     public Jugador insert(Jugador jugador){
