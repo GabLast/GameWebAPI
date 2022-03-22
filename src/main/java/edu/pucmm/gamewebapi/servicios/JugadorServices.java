@@ -5,6 +5,7 @@ import edu.pucmm.gamewebapi.repositorios.JugadorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import java.util.List;
 
 @Service
@@ -13,6 +14,7 @@ public class JugadorServices {
     @Autowired
     private JugadorRepository jugadorRepository;
 
+    @PostConstruct
     public void init(){
         jugadorRepository.save(new Jugador("Jugador de prueba", 999));
     }
