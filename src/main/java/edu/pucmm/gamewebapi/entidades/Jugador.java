@@ -22,7 +22,7 @@ public class Jugador implements Serializable {
     public Jugador() {
     }
 
-    public Jugador(String jugador_de_prueba, long i) {
+    public Jugador(String jugador_de_prueba, int i) {
         this.nombreJugador = jugador_de_prueba;
         this.score = i;
     }
@@ -43,11 +43,11 @@ public class Jugador implements Serializable {
         this.nombreJugador = nombreJugador;
     }
 
-    public long getScore() {
+    public int getScore() {
         return score;
     }
 
-    public void setScore(long score) {
+    public void setScore(int score) {
         this.score = score;
     }
 
