@@ -1,7 +1,5 @@
 package edu.pucmm.gamewebapi.controladores;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import edu.pucmm.gamewebapi.entidades.Jugador;
 import edu.pucmm.gamewebapi.servicios.JugadorServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,15 +17,13 @@ public class JugadorAPI {
     private JugadorServices jugadorServices;
 
     @GetMapping("")
-    public ResponseEntity<?> getAll() throws JsonProcessingException {
-        ObjectMapper objectMapper = new ObjectMapper();
+    public ResponseEntity<?> getAll() {
 
         return new ResponseEntity<>(jugadorServices.findAll(), null, 200);
     }
 
     @GetMapping("/find")
-    public ResponseEntity<?> getByID(@RequestParam(name = "id", required = false) long id) throws JsonProcessingException {
-        ObjectMapper objectMapper = new ObjectMapper();
+    public ResponseEntity<?> getByID(@RequestParam(name = "id", required = false) long id) {
 
         return new ResponseEntity<>(jugadorServices.findByID(id), null, 200);
     }
@@ -47,8 +43,7 @@ public class JugadorAPI {
 //    }
 
     @PutMapping("")
-    public ResponseEntity<?> put(@RequestBody Jugador jugador) throws JsonProcessingException {
-        ObjectMapper objectMapper = new ObjectMapper();
+    public ResponseEntity<?> put(@RequestBody Jugador jugador) {
 
         jugador.setId(0);
         jugador.setFechaRegistro(new Date());
@@ -61,8 +56,7 @@ public class JugadorAPI {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<?> update(@RequestBody Jugador jugador) throws JsonProcessingException {
-        ObjectMapper objectMapper = new ObjectMapper();
+    public ResponseEntity<?> update(@RequestBody Jugador jugador) {
         Jugador player;
 
         try {
@@ -78,7 +72,7 @@ public class JugadorAPI {
     }
 
     @PutMapping("/delete")
-    public ResponseEntity<?> delete(@RequestParam(name = "id") long id) throws JsonProcessingException {
+    public ResponseEntity<?> delete(@RequestParam(name = "id") long id) {
         Jugador player;
 
         try {
@@ -91,7 +85,7 @@ public class JugadorAPI {
     }
 
     @DeleteMapping("/PELIGROSO")
-    public ResponseEntity<?> alldelete() throws JsonProcessingException {
+    public ResponseEntity<?> alldelete() {
         jugadorServices.clearAll();
         return new ResponseEntity<>("Everything has been deleted", null, 200);
     }

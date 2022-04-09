@@ -15,7 +15,7 @@ public class Jugador implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String nombreJugador;
-    private long score;
+    private int score;
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date fechaRegistro = new Date();
 
