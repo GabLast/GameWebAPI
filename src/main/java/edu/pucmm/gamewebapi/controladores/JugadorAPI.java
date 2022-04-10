@@ -64,7 +64,6 @@ public class JugadorAPI {
         }catch (NullPointerException e){
             return new ResponseEntity<>("ERROR: Jugador no existe", null, 400);
         }
-
         player.setScore(jugador.getScore());
         player.setNombreJugador(jugador.getNombreJugador());
 
