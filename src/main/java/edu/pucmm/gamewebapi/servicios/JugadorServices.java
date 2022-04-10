@@ -28,7 +28,7 @@ public class JugadorServices {
         return jugadorRepository.findAll();
     }
 
-    public Jugador findByID(long id){
+    public Jugador findByID(int id){
         return jugadorRepository.findById(id);
     }
 

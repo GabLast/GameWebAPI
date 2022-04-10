@@ -23,7 +23,7 @@ public class JugadorAPI {
     }
 
     @GetMapping("/find")
-    public ResponseEntity<?> getByID(@RequestParam(name = "id", required = false) long id) {
+    public ResponseEntity<?> getByID(@RequestParam(name = "id", required = false) int id) {
 
         return new ResponseEntity<>(jugadorServices.findByID(id), null, 200);
     }
@@ -71,7 +71,7 @@ public class JugadorAPI {
     }
 
     @PutMapping("/delete")
-    public ResponseEntity<?> delete(@RequestParam(name = "id") long id) {
+    public ResponseEntity<?> delete(@RequestParam(name = "id") int id) {
         Jugador player;
 
         try {
