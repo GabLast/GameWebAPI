@@ -65,7 +65,6 @@ public class JugadorAPI {
             return new ResponseEntity<>("ERROR: Jugador no existe", null, 400);
         }
         player.setScore(jugador.getScore());
-        player.setNombreJugador(jugador.getNombreJugador());
 
         return new ResponseEntity<>(jugadorServices.insert(player), null, 200);
     }
