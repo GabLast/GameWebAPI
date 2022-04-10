@@ -13,7 +13,7 @@ public class Jugador implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private int id;
     private String nombreJugador;
     private int score;
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
@@ -22,16 +22,16 @@ public class Jugador implements Serializable {
     public Jugador() {
     }
 
-    public Jugador(String jugador_de_prueba, int i) {
-        this.nombreJugador = jugador_de_prueba;
-        this.score = i;
+    public Jugador(String nombreJugador, int score) {
+        this.nombreJugador = nombreJugador;
+        this.score = score;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
